@@ -5,6 +5,8 @@ import PublicLayout from "./components/layout/PublicLayout";
 // Public Pages
 import Home from "./pages/public/Home";
 import Products from "./pages/public/Products";
+import About from "./pages/public/About";
+import Contact from "./pages/public/Contact";
 import Placeholder from "./pages/public/Placeholder"; // Temporary for other pages
 
 function App() {
@@ -15,11 +17,8 @@ function App() {
         <Route element={<PublicLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/about" element={<Placeholder pageName="About Us" />} />
-          <Route
-            path="/contact"
-            element={<Placeholder pageName="Contact Us" />}
-          />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
         </Route>
 
         {/* Admin Routes (Placeholder for now) */}
