@@ -12,6 +12,7 @@ import Placeholder from "./pages/public/Placeholder"; // Temporary for other pag
 import { AuthProvider } from "./contexts/AuthContext";
 import AdminLogin from "./pages/admin/AdminLogin";
 import ProtectedRoute from "./components/admin/common/ProtectedRoute";
+import AdminLayout from "./components/admin/layout/AdminLayout";
 
 function App() {
   return (
@@ -30,11 +31,13 @@ function App() {
           <Route path="/admin/login" element={<AdminLogin />} />
 
           <Route element={<ProtectedRoute />}>
-            <Route
-              path="/admin/dashboard"
-              element={<div>Admin Dashboard (Protected)</div>}
-            />
-            {/* Other protected admin routes will go here */}
+            <Route element={<AdminLayout />}>
+              <Route
+                path="/admin/dashboard"
+                element={<div>Admin Dashboard (Protected)</div>}
+              />
+              {/* Other protected admin routes will go here */}
+            </Route>
           </Route>
 
           {/* 404 Route */}
