@@ -9,32 +9,45 @@ import About from "./pages/public/About";
 import Contact from "./pages/public/Contact";
 import Placeholder from "./pages/public/Placeholder"; // Temporary for other pages
 
+import { AuthProvider } from "./contexts/AuthContext";
+import AdminLogin from "./pages/admin/AdminLogin";
+import ProtectedRoute from "./components/admin/common/ProtectedRoute";
+
 function App() {
   return (
     <Router>
-      <Routes>
-        {/* Public Routes */}
-        <Route element={<PublicLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Route>
+      <AuthProvider>
+        <Routes>
+          {/* Public Routes */}
+          <Route element={<PublicLayout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+          </Route>
 
-        {/* Admin Routes (Placeholder for now) */}
-        <Route
-          path="/admin/*"
-          element={<div>Admin Dashboard Placeholder</div>}
-        />
+          {/* Admin Routes */}
+          <Route path="/admin/login" element={<AdminLogin />} />
 
-        {/* 404 Route */}
-        <Route
-          path="*"
-          element={
-            <div className="p-8 text-center text-2xl">404 - Page Not Found</div>
-          }
-        />
-      </Routes>
+          <Route element={<ProtectedRoute />}>
+            <Route
+              path="/admin/dashboard"
+              element={<div>Admin Dashboard (Protected)</div>}
+            />
+            {/* Other protected admin routes will go here */}
+          </Route>
+
+          {/* 404 Route */}
+          <Route
+            path="*"
+            element={
+              <div className="p-8 text-center text-2xl">
+                404 - Page Not Found
+              </div>
+            }
+          />
+        </Routes>
+      </AuthProvider>
     </Router>
   );
 }
