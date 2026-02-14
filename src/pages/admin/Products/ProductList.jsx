@@ -174,7 +174,11 @@ const ProductList = () => {
                     ₹{product.price_min} - ₹{product.price_max}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {product.stock}
+                    <span
+                      className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${product.stock > 10 ? "bg-green-100 text-green-800" : product.stock > 0 ? "bg-yellow-100 text-yellow-800" : "bg-red-100 text-red-800"}`}
+                    >
+                      {product.stock} {product.stock === 0 && "(Out of Stock)"}
+                    </span>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <button
