@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { useSettings } from "../../hooks/useSettings";
 
 const Footer = () => {
+  const { settings } = useSettings();
+
+  if (!settings) return null;
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -64,34 +68,30 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 text-primary mr-2 mt-0.5" />
-                <span className="text-gray-400">
-                  Bisauli, Uttar Pradesh, India - 243720
-                </span>
+                <span className="text-gray-400">{settings.address}</span>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 text-primary mr-2" />
                 <a
-                  href="tel:+919876543210"
+                  href={`tel:${settings.phone}`}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  +91 98765 43210
+                  {settings.phone}
                 </a>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 text-primary mr-2" />
                 <a
-                  href="mailto:contact@haribhagwantraders.com"
+                  href={`mailto:${settings.email}`}
                   className="text-gray-400 hover:text-white transition-colors"
                 >
-                  contact@haribhagwantraders.com
+                  {settings.email}
                 </a>
               </li>
               <li className="flex items-start">
                 <Clock className="h-5 w-5 text-primary mr-2 mt-0.5" />
-                <span className="text-gray-400">
-                  Mon - Sat: 10:00 AM - 8:00 PM
-                  <br />
-                  Sun: Closed
+                <span className="text-gray-400 whitespace-pre-line">
+                  {settings.business_hours}
                 </span>
               </li>
             </ul>

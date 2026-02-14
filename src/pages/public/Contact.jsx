@@ -1,7 +1,12 @@
 import React from "react";
 import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
+import { useSettings } from "../../hooks/useSettings";
 
 const Contact = () => {
+  const { settings } = useSettings();
+
+  if (!settings)
+    return <div className="p-8 text-center">Loading contact info...</div>;
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
@@ -31,11 +36,8 @@ const Contact = () => {
                     <p className="text-lg font-medium text-gray-900">
                       Our Location
                     </p>
-                    <p className="mt-1 text-gray-500">
-                      Bisauli, Uttar Pradesh 243720
-                    </p>
-                    <p className="mt-1 text-sm text-gray-400">
-                      Near Main Market
+                    <p className="mt-1 text-gray-500 whitespace-pre-line">
+                      {settings.address}
                     </p>
                   </div>
                 </div>
@@ -48,10 +50,10 @@ const Contact = () => {
                     <p className="text-lg font-medium text-gray-900">Phone</p>
                     <p className="mt-1 text-gray-500">
                       <a
-                        href="tel:+919876543210"
+                        href={`tel:${settings.phone}`}
                         className="hover:text-primary transition-colors"
                       >
-                        +91 98765 43210
+                        {settings.phone}
                       </a>
                     </p>
                   </div>
@@ -65,10 +67,10 @@ const Contact = () => {
                     <p className="text-lg font-medium text-gray-900">Email</p>
                     <p className="mt-1 text-gray-500">
                       <a
-                        href="mailto:contact@haribhagwantraders.com"
+                        href={`mailto:${settings.email}`}
                         className="hover:text-primary transition-colors"
                       >
-                        contact@haribhagwantraders.com
+                        {settings.email}
                       </a>
                     </p>
                   </div>
@@ -82,24 +84,23 @@ const Contact = () => {
                     <p className="text-lg font-medium text-gray-900">
                       Business Hours
                     </p>
-                    <p className="mt-1 text-gray-500">
-                      Monday - Saturday: 10:00 AM - 8:00 PM
+                    <p className="mt-1 text-gray-500 whitespace-pre-line">
+                      {settings.business_hours}
                     </p>
-                    <p className="mt-1 text-gray-500">Sunday: Closed</p>
                   </div>
                 </div>
               </div>
 
               <div className="mt-8 flex space-x-4">
                 <a
-                  href="tel:+919876543210"
+                  href={`tel:${settings.phone}`}
                   className="flex-1 flex justify-center items-center py-3 border border-transparent text-base font-medium rounded-md text-white bg-secondary hover:bg-primary transition-colors"
                 >
                   <Phone className="h-5 w-5 mr-2" />
                   Call Now
                 </a>
                 <a
-                  href="https://wa.me/919876543210"
+                  href={`https://wa.me/${settings.whatsapp?.replace(/[^0-9]/g, "")}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex-1 flex justify-center items-center py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-600 hover:bg-green-700 transition-colors"
@@ -114,7 +115,7 @@ const Contact = () => {
           {/* Map */}
           <div className="bg-white shadow rounded-lg overflow-hidden h-96 md:h-auto">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14065.659637774936!2d78.9324!3d28.3075!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390b9680c2f5dcb7%3A0x6c6e75e1b4b0b0b0!2sBisauli%2C%20Uttar%20Pradesh%20243720!5e0!3m2!1sen!2sin!4v1645000000000!5m2!1sen!2sin"
+              src={settings.map_url}
               width="100%"
               height="100%"
               style={{ border: 0 }}

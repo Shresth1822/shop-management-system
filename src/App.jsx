@@ -17,7 +17,9 @@ import ProductList from "./pages/admin/Products/ProductList";
 import ProductForm from "./pages/admin/Products/ProductForm";
 import CategoryList from "./pages/admin/Categories/CategoryList";
 import CategoryForm from "./pages/admin/Categories/CategoryForm";
+
 import DashboardHome from "./pages/admin/DashboardHome";
+import Settings from "./pages/admin/Settings";
 
 function App() {
   return (
@@ -51,6 +53,8 @@ function App() {
                 path="/admin/categories/edit/:id"
                 element={<CategoryForm />}
               />
+
+              <Route path="/admin/settings" element={<Settings />} />
 
               {/* Other protected admin routes will go here */}
             </Route>
