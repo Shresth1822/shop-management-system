@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Star, ShieldCheck, Truck } from "lucide-react";
+import SEO from "../../components/common/SEO";
 
 const Home = () => {
   return (
     <div className="space-y-16 pb-16">
+      <SEO />
       {/* Hero Section */}
       <div className="relative bg-primary overflow-hidden">
         <div className="max-w-7xl mx-auto">

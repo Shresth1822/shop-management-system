@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 import PublicLayout from "./components/layout/PublicLayout";
 
 // Public Pages
@@ -23,55 +24,60 @@ import Settings from "./pages/admin/Settings";
 
 function App() {
   return (
-    <Router>
-      <AuthProvider>
-        <Routes>
-          {/* Public Routes */}
-          <Route element={<PublicLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-          </Route>
-
-          {/* Admin Routes */}
-          <Route path="/admin/login" element={<AdminLogin />} />
-
-          <Route element={<ProtectedRoute />}>
-            <Route element={<AdminLayout />}>
-              <Route path="/admin/dashboard" element={<DashboardHome />} />
-              <Route path="/admin/products" element={<ProductList />} />
-              <Route path="/admin/products/new" element={<ProductForm />} />
-              <Route
-                path="/admin/products/edit/:id"
-                element={<ProductForm />}
-              />
-
-              <Route path="/admin/categories" element={<CategoryList />} />
-              <Route path="/admin/categories/new" element={<CategoryForm />} />
-              <Route
-                path="/admin/categories/edit/:id"
-                element={<CategoryForm />}
-              />
-
-              <Route path="/admin/settings" element={<Settings />} />
-
-              {/* Other protected admin routes will go here */}
+    <HelmetProvider>
+      <Router>
+        <AuthProvider>
+          <Routes>
+            {/* Public Routes */}
+            <Route element={<PublicLayout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
             </Route>
-          </Route>
 
-          {/* 404 Route */}
-          <Route
-            path="*"
-            element={
-              <div className="p-8 text-center text-2xl">
-                404 - Page Not Found
-              </div>
-            }
-          />
-        </Routes>
-      </AuthProvider>
-    </Router>
+            {/* Admin Routes */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+
+            <Route element={<ProtectedRoute />}>
+              <Route element={<AdminLayout />}>
+                <Route path="/admin/dashboard" element={<DashboardHome />} />
+                <Route path="/admin/products" element={<ProductList />} />
+                <Route path="/admin/products/new" element={<ProductForm />} />
+                <Route
+                  path="/admin/products/edit/:id"
+                  element={<ProductForm />}
+                />
+
+                <Route path="/admin/categories" element={<CategoryList />} />
+                <Route
+                  path="/admin/categories/new"
+                  element={<CategoryForm />}
+                />
+                <Route
+                  path="/admin/categories/edit/:id"
+                  element={<CategoryForm />}
+                />
+
+                <Route path="/admin/settings" element={<Settings />} />
+
+                {/* Other protected admin routes will go here */}
+              </Route>
+            </Route>
+
+            {/* 404 Route */}
+            <Route
+              path="*"
+              element={
+                <div className="p-8 text-center text-2xl">
+                  404 - Page Not Found
+                </div>
+              }
+            />
+          </Routes>
+        </AuthProvider>
+      </Router>
+    </HelmetProvider>
   );
 }
 

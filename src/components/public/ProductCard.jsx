@@ -1,7 +1,13 @@
 import React from "react";
 import { Phone, MessageCircle } from "lucide-react";
+import { useSettings } from "../../hooks/useSettings";
 
 const ProductCard = ({ product }) => {
+  const { settings } = useSettings();
+
+  // Default values if settings aren't loaded yet or available
+  const phone = settings?.phone || "+919876543210";
+  const whatsapp = settings?.whatsapp?.replace(/[^0-9]/g, "") || "919876543210";
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col h-full">
       <div className="relative h-48 sm:h-56 bg-gray-200">
@@ -9,6 +15,7 @@ const ProductCard = ({ product }) => {
           <img
             src={product.image_url}
             alt={product.name}
+            loading="lazy"
             className="w-full h-full object-cover"
           />
         ) : (
@@ -41,14 +48,14 @@ const ProductCard = ({ product }) => {
 
           <div className="grid grid-cols-2 gap-2">
             <a
-              href="tel:+919876543210"
+              href={`tel:${phone}`}
               className="flex justify-center items-center py-2 px-3 border border-secondary text-secondary rounded-md hover:bg-secondary hover:text-white transition-colors text-sm font-medium"
             >
               <Phone className="h-4 w-4 mr-2" />
               Call
             </a>
             <a
-              href={`https://wa.me/919876543210?text=I'm interested in ${product.name}`}
+              href={`https://wa.me/${whatsapp}?text=I'm interested in ${product.name}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex justify-center items-center py-2 px-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors text-sm font-medium"

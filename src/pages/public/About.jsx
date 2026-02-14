@@ -1,9 +1,14 @@
 import React from "react";
 import { Award, Users, History, CheckCircle } from "lucide-react";
+import SEO from "../../components/common/SEO";
 
 const About = () => {
   return (
     <div className="bg-white">
+      <SEO
+        title="About Us"
+        description="Learn about Hari Bhagwan Traders, a trusted name in Bisauli for quality kitchenware and crockery since 20 years."
+      />
       {/* Hero Section */}
       <div className="bg-primary py-16 sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

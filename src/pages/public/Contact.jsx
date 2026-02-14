@@ -1,6 +1,7 @@
 import React from "react";
 import { MapPin, Phone, Mail, Clock, MessageCircle } from "lucide-react";
 import { useSettings } from "../../hooks/useSettings";
+import SEO from "../../components/common/SEO";
 
 const Contact = () => {
   const { settings } = useSettings();
@@ -9,6 +10,10 @@ const Contact = () => {
     return <div className="p-8 text-center">Loading contact info...</div>;
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <SEO
+        title="Contact Us"
+        description="Get in touch with Hari Bhagwan Traders. Visit our store in Bisauli or contact us via phone or email."
+      />
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
