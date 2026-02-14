@@ -14,6 +14,8 @@ import ProtectedRoute from "./components/admin/common/ProtectedRoute";
 import AdminLayout from "./components/admin/layout/AdminLayout";
 import ProductList from "./pages/admin/Products/ProductList";
 import ProductForm from "./pages/admin/Products/ProductForm";
+import CategoryList from "./pages/admin/Categories/CategoryList";
+import CategoryForm from "./pages/admin/Categories/CategoryForm";
 
 function App() {
   return (
@@ -43,6 +45,14 @@ function App() {
                 path="/admin/products/edit/:id"
                 element={<ProductForm />}
               />
+
+              <Route path="/admin/categories" element={<CategoryList />} />
+              <Route path="/admin/categories/new" element={<CategoryForm />} />
+              <Route
+                path="/admin/categories/edit/:id"
+                element={<CategoryForm />}
+              />
+
               {/* Other protected admin routes will go here */}
             </Route>
           </Route>
