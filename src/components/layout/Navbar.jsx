@@ -16,7 +16,7 @@ const Navbar = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
+    <nav className="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo and Mobile Menu Button */}
@@ -34,15 +34,19 @@ const Navbar = () => {
             </button>
             <Link
               to="/"
-              className="flex-shrink-0 flex items-center ml-2 md:ml-0"
+              className="flex-shrink-0 flex items-center ml-2 md:ml-0 gap-2 group"
             >
-              <ShoppingBag className="h-8 w-8 text-primary" />
-              <span className="ml-2 text-xl font-bold text-gray-900 hidden sm:block">
-                Hari Bhagwan Traders
-              </span>
-              <span className="ml-2 text-xl font-bold text-gray-900 sm:hidden">
-                HBT
-              </span>
+              <div className="bg-primary-light p-1.5 rounded-lg group-hover:bg-primary transition-colors duration-300">
+                <ShoppingBag className="h-6 w-6 text-white" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xl font-serif font-bold text-gray-900 tracking-tight leading-none group-hover:text-primary transition-colors duration-300">
+                  Hari Bhagwan
+                </span>
+                <span className="text-xs text-secondary font-medium tracking-widest uppercase hidden sm:block">
+                  Traders
+                </span>
+              </div>
             </Link>
           </div>
 
@@ -70,30 +74,34 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation Links & Actions */}
-          <div className="hidden md:flex items-center space-x-4 ml-4">
+          <div className="hidden md:flex items-center space-x-8 ml-8">
             <Link
               to="/"
-              className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+              className="text-gray-600 hover:text-primary font-medium transition-colors duration-200 relative group"
             >
               Home
+              <span className="absolute inset-x-0 bottom-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
             </Link>
             <Link
               to="/products"
-              className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+              className="text-gray-600 hover:text-primary font-medium transition-colors duration-200 relative group"
             >
               Products
+              <span className="absolute inset-x-0 bottom-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
             </Link>
             <Link
               to="/about"
-              className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+              className="text-gray-600 hover:text-primary font-medium transition-colors duration-200 relative group"
             >
               About
+              <span className="absolute inset-x-0 bottom-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
             </Link>
             <Link
               to="/contact"
-              className="text-gray-700 hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+              className="text-gray-600 hover:text-primary font-medium transition-colors duration-200 relative group"
             >
               Contact
+              <span className="absolute inset-x-0 bottom-0 h-0.5 bg-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-200 origin-left"></span>
             </Link>
 
             <a
