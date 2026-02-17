@@ -1,9 +1,5 @@
 import React from "react";
 import { Award, Users, History, CheckCircle } from "lucide-react";
-import SEO from "../../components/common/SEO";
-
-import React from "react";
-import { Award, Users, History, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import SEO from "../../components/common/SEO";
 
